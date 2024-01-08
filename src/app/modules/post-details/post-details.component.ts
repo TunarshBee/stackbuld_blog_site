@@ -23,7 +23,7 @@ export class PostDetailsComponent {
   post!: IPost
   postId!: string
   comments!: Array<any>
-  loading$!: Observable<boolean>
+  loading$!: Observable<any>
 
   constructor(private route: ActivatedRoute, private postService: PostService, private router: Router, private store: Store) { }
 
