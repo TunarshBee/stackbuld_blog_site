@@ -8,17 +8,21 @@ import { updateBlogPost } from '../../../store/post.action';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import { Observable } from 'rxjs';
+import { selectBlogLoading } from '../../../store/post.selectors';
+import { LoaderComponent } from '../../shared/loader/loader.component';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-edit-post',
   standalone: true,
-  imports: [ReactiveFormsModule,MatFormFieldModule,MatButtonModule, MatInputModule],
+  imports: [ReactiveFormsModule,MatFormFieldModule,LoaderComponent, CommonModule,MatButtonModule, MatInputModule],
   templateUrl: './edit-post.component.html',
   styleUrl: './edit-post.component.scss'
 })
 export class EditPostComponent implements OnInit {
   postId!: string;
   post!: IPost;
-  isLoading!: boolean
+  loading$!: Observable<boolean>
 
   constructor(
     private store: Store,
@@ -31,15 +35,19 @@ export class EditPostComponent implements OnInit {
    }
 
   ngOnInit() {
-    
+    this.loading$ = this.store.select(selectBlogLoading);
+ 
   }
 
+
+  // creating the form group and FormControls
   editForm = new FormGroup({
     text: new FormControl("", Validators.required),
     likes: new FormControl("", Validators.required),
     tags: new FormControl("", Validators.required)
   })
 
+  // loading available posts
   loadPost() {
     this.postService.getPostById(this.postId).subscribe((post: IPost) => {
       this.post = post;
@@ -57,6 +65,7 @@ export class EditPostComponent implements OnInit {
   }
 
   savePost() {
+    // getting the form values
     const { likes, tags, text } = this.editForm.value
     let tagArray = tags?.split(" ")
     this.store.dispatch(updateBlogPost({ post: { id: this.postId, likes: likes as string, tags: tagArray, text: text as string } }))

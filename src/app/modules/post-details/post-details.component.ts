@@ -7,12 +7,15 @@ import { MatCardModule } from '@angular/material/card';
 import { Store } from '@ngrx/store';
 import { deleteBlogPost, loadComments } from '../../../store/post.action';
 import { CommentFormComponent } from '../../shared/comment-form/comment-form.component';
+import { selectBlogLoading } from '../../../store/post.selectors';
+import { Observable } from 'rxjs';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 
 @Component({
   selector: 'app-post-details',
   standalone: true,
-  imports: [CommonModule, MatCardModule, RouterLink, CommentFormComponent],
+  imports: [CommonModule, MatCardModule, LoaderComponent, RouterLink, CommentFormComponent],
   templateUrl: './post-details.component.html',
   styleUrl: './post-details.component.scss'
 })
@@ -20,6 +23,7 @@ export class PostDetailsComponent {
   post!: IPost
   postId!: string
   comments!: Array<any>
+  loading$!: Observable<boolean>
 
   constructor(private route: ActivatedRoute, private postService: PostService, private router: Router, private store: Store) { }
 
@@ -33,9 +37,13 @@ export class PostDetailsComponent {
     this.postService.getComments(this.postId).subscribe(resp => {
       this.comments = resp.data
     })
+    this.loading$ = this.store.select(selectBlogLoading);
   }
 
+
+  // the delete function
   onDelete() {
+    // a matdialog, bootstrap modal or any pop-up modal can also be used for the delete confirmation
     if (confirm("Are you sure you want to delete this post")) {
       this.store.dispatch(deleteBlogPost({ postId: this.postId }))
       this.router.navigate(["/"])

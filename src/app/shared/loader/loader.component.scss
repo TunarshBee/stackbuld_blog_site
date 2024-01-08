@@ -1,0 +1,22 @@
+.loader-container {
+    position: relative;
+    margin: 20%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+}
+
+.loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 8px solid #3498db;
+    border-top: 8px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

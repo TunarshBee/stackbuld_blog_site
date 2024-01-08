@@ -8,12 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, CommonModule, MatCardModule, PaginationComponent],
+  imports: [RouterLink, RouterLinkActive, LoaderComponent, FormsModule, CommonModule, MatCardModule, PaginationComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
@@ -40,16 +41,17 @@ export class LandingPageComponent implements OnInit {
         this.totalPages = Math.ceil(data.total / data.limit);
       }
     });
-
+// getting the loading and the error state
     this.loading$ = this.store.select(selectBlogLoading);
     this.error$ = this.store.select(selectBlogError);
   }
-
+//  getting the currentPage number
   onPageChange(page: number) {
     this.currentPage = page ;
     this.loadPosts();
   }
 
+  // loading the available post
   private loadPosts() {
     this.store.dispatch(loadBlogPosts({ page: this.currentPage }));
     this.posts = this.store.select(BlogPostsSelector);
@@ -57,6 +59,7 @@ export class LandingPageComponent implements OnInit {
     this.error$ = this.store.select(selectBlogError);
   }
 
+  // function to search for the post with the search term
   search() {
     this.store.select(selectFilteredBlogPosts, { searchTerm: this.searchTerm }).subscribe(
       data=> this.posts = data.posts
