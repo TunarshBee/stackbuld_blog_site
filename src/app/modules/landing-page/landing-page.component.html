@@ -7,7 +7,7 @@
         <h2>Blog Posts</h2>
         <input [(ngModel)]="searchTerm" class="search mb-2" (change)="search()" placeholder="Search..." />
        </div>
-        <div class="row row-cols-lg-3 d-flex">
+        <div class="row row-cols-lg-3 row-cols-sm-1 d-flex">
     
             @for (post of posts ; track $index) {
             <div class="col-3">
