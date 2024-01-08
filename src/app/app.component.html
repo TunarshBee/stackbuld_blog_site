@@ -1,1 +1,9 @@
-<router-outlet></router-outlet>
+@if (isLoading === true) {
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+}
+@else {
+    <router-outlet></router-outlet>
+}
+
