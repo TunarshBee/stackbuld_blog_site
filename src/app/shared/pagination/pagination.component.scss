@@ -1,0 +1,14 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    margin: 0 8px;
+  }
+
+  .page-number {
+    font-size: 16px;
+    margin: 0 8px;
+  }
+}

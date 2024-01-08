@@ -1,0 +1,9 @@
+<div class="pagination">
+    <button mat-icon-button (click)="prevPage()" [disabled]="currentPage < 1">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <span class="page-number">{{ currentPage + 1 }} / {{ totalPages }}</span>
+    <button mat-icon-button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
