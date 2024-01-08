@@ -37,7 +37,7 @@ export class CreatePostComponent {
   savePost() {
     const { image, tags, likes, owner, text } = this.postForm.value;
     let tag = tags?.split(" ")
-    console.log(tag)
+
     this.store.dispatch(createBlogPost({ post: { image: image, likes: likes, owner: owner, publishDate: Date.now(), tags: tag, text: text } }))
     this.router.navigate(['/']);
   }

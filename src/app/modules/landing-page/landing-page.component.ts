@@ -30,7 +30,7 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(loadBlogPosts({page:0}));
     this.store.select(BlogPostsSelector).subscribe(data => {
-      console.log(data)
+
       this.posts = data.posts ;
       if (data.posts.length === 0) {
         this.currentPage = 1;

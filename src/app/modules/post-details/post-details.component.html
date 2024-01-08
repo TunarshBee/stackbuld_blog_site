@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="footer d-flex justify-content-between w-75">
-                <a [routerLink]="['edit']" class="btn btn-secondary" routerLinkActive="router-link-active" >
+                <a [routerLink]="['edit']" class="btn btn-secondary" routerLinkActive="router-link-active">
                     Edit post
                 </a>
                 <a class="btn btn-danger" (click)="onDelete()">
@@ -42,6 +42,17 @@
 
                 </mat-card-actions>
             </mat-card>
+            <app-comment-form [postId]="post.id"></app-comment-form>
+            @if (comments && comments.length > 0) {
+
+            <h3>Comments</h3>
+            <ul class="m-0 p-0" >
+                @for (comment of comments; track $index) {
+                <li>{{$index + 1}}. {{ comment.message }}</li>
+                }
+            </ul>
+            }
+
         </div>
     </div>
 </div>

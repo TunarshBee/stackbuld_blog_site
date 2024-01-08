@@ -1,0 +1,16 @@
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0px;
+  
+    textarea {
+      min-height: 80px;
+    }
+  
+    button {
+        margin-top: 16px;
+      align-self: flex-start;
+    }
+  }

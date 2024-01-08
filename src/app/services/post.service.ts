@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 import { Store } from '@ngrx/store';
+import { Comment } from '../../store/models/post.models';
 
 
 @Injectable({
@@ -25,6 +26,13 @@ export class PostService {
 
   createPost(post: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/post/create`, post);
+  }
+
+  addComment(comment: Comment): Observable<Comment> {
+    return this.http.post<Comment>(`${this.apiUrl}/comment/create`, comment);
+  }
+  getComments(postId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/post/${postId}/comment`);
   }
 
   updatePost(id: string, post: any): Observable<any> {
