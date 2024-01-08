@@ -1,0 +1,19 @@
+.body{
+    position: relative;
+    & img{
+        max-height: 400px;
+        border-radius: 20px;
+    }
+}
+
+mat-card {
+        background-color: #fff;
+    border-radius: 12px;
+    mat-card-header{
+        &  img{
+            max-width: 45px;
+            max-height: 45px;
+            clip-path: circle();
+        }
+    }
+}

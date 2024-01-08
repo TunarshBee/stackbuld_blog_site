@@ -1,4 +1,47 @@
-<div>
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.content }}</p>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="header">
+                <h3 class="text-light mb-3">{{post.text}}</h3>
+            </div>
+            <div class="body position-relative">
+                <img src={{post.image}} alt="" class="post-image w-75">
+                <div class="d-flex justify-content-between align-items-center w-75">
+                    <span>{{post.likes}} Likes</span>
+                    <span>Date: {{post.publishDate | date}}</span>
+                </div>
+            </div>
+            <div class="footer d-flex justify-content-between w-75">
+                <a [routerLink]="['edit']" class="btn btn-secondary" routerLinkActive="router-link-active" >
+                    Edit post
+                </a>
+                <a class="btn btn-danger" (click)="onDelete()">
+                    Delete post
+                </a>
+            </div>
+        </div>
+        <div class="col">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image">
+                        <img class="author-img" src={{post.owner?.picture}} alt={{post.owner?.lastName}}>
+                    </div>
+
+                    <mat-card-title>{{post.owner?.title | titlecase}} {{post.owner?.lastName}}</mat-card-title>
+                    <mat-card-subtitle class="text-dark">Date {{post.publishDate | date}}</mat-card-subtitle>
+
+                </mat-card-header>
+
+                <mat-card-actions>
+                    <h4 class="my-0 mx-2">Tags:- </h4>
+                    @for (tag of post.tags; track $index) {
+                    <span class="me-2">
+                        {{$index + 1}}. {{tag}}
+                    </span>
+                    }
+
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
 </div>
