@@ -1,0 +1,42 @@
+<div>
+  <h2>Create Post</h2>
+  <div class="example-form-fields">
+    <form [formGroup]="postForm" (submit)="savePost()">
+      <div class="row">
+        <div class="col-6">
+          <div class="row">
+            <label class="my-2" for="text">Text:</label>
+            <mat-form-field>
+              <input type="text" class="text-dark" matInput id="text" formControlName="text" required>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <label class="my-2" for="likes">Likes:</label>
+            <mat-form-field>
+              <input type="number" class="text-dark" matInput id="likes" formControlName="likes" required>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <label class="my-2" for="tags">Tags:</label>
+            <mat-form-field>
+              <input type="text" class="text-dark" matInput id="tags" formControlName="tags">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <label class="my-2" for="image">Image:</label>
+            <mat-form-field>
+              <input type="text" class="text-dark" matInput id="image" formControlName="image">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <label class="my-2" for="owner">Owner Name:</label>
+            <mat-form-field>
+              <input type="text" class="text-dark" matInput id="owner" formControlName="owner">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <button type="submit">Create Post</button>
+    </form>
+  </div>
+</div>
