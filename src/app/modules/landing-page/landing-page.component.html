@@ -1,10 +1,40 @@
-<div>
+<div class="landing-page">
+   <div class="d-flex justify-content-between w-100">
     <h2>Blog Posts</h2>
-    @for (post of posts; track $index) {
-    <div>
-        <a [routerLink]="['/post', post.id]">
-            {{ post.text }}
-        </a>
+    <input [(ngModel)]="searchTerm" class="search mb-2" (change)="search()" placeholder="Search..." />
+   </div>
+    <div class="row row-cols-lg-3 d-flex">
+
+        @for (post of posts ; track $index) {
+        <div class="col-3">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image">
+                        <img class="author-img" src={{post.owner?.picture}} alt={{post.owner?.lastName}}>
+                    </div>
+
+                    <mat-card-title>{{post.owner?.title | titlecase}} {{post.owner?.lastName}}</mat-card-title>
+                    <mat-card-subtitle class="text-dark">Date {{post.publishDate | date}}</mat-card-subtitle>
+
+                </mat-card-header>
+                <img mat-card-image src={{post.image}} alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <p>
+                        {{post.text}}
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+
+                    <span>{{post.likes}} Likes</span>
+                    <a [routerLink]="['/post', post.id]">More details</a>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        }
     </div>
-    }
+    <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChange)="onPageChange($event)"
+  ></app-pagination>
 </div>
