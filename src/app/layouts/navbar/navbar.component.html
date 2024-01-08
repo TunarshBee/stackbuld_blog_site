@@ -1,2 +1,14 @@
-<p>navbar works!</p>
-<router-outlet></router-outlet>
+<mat-toolbar class="nav bg-white position-fixed px-5" >
+    <mat-toolbar-row>
+        <div class="d-flex justify-content-between w-100">
+            <a [routerLink]="['/']" class="text-dark">Stackuld Blog Site</a>
+
+            <button class="btn btn-secondary" [routerLink]="['/post/new']" routerLinkActive="router-link-active" >
+                Create Post
+            </button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
