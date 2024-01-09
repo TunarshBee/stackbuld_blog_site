@@ -3,7 +3,7 @@
   <div class="example-form-fields">
     <form [formGroup]="postForm" (submit)="savePost()">
       <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-12">
           <div class="row">
             <label class="my-2" for="text">Text:</label>
             <mat-form-field>
@@ -25,11 +25,11 @@
           <div class="row">
             <label class="my-2" for="image">Image:</label>
             <mat-form-field>
-              <input type="text" class="text-dark" matInput id="image" formControlName="image">
+              <input type="text" class="text-dark" matInput id="image" formControlName="image" placeholder="image url" >
             </mat-form-field>
           </div>
           <div class="row">
-            <label class="my-2" for="owner">Owner Name:</label>
+            <label class="my-2" for="owner">Owner Name:- <em>a default owner since there's no auth implementation </em> </label>
             <mat-form-field>
               <input type="text" class="text-dark" matInput id="owner" formControlName="owner">
             </mat-form-field>
