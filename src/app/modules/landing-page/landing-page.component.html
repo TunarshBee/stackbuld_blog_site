@@ -1,7 +1,4 @@
-@if (loading$ | async) {
-    <app-loader></app-loader>
-}
-@else {
+
     <div class="landing-page">
        <div class="d-flex justify-content-between w-100">
         <h2>Blog Posts</h2>
@@ -42,4 +39,4 @@
         (pageChange)="onPageChange($event)"
       ></app-pagination>
     </div>
-}
+
